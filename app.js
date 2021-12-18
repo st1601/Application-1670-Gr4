@@ -1,12 +1,16 @@
 const express = require('express')
+const session = require('express-session')
+const { checkUserRole } = require('databaseHandel')
+const { requiresLogin } = require('./project')
+
 const app = express()
-app.use(express.static('public'))
-    //const { ObjectId, MongoClient } = require('mongodb');
-const DATABASE_NAME = "Appdev1670";
-const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017'
+
 app.set('view engine', 'hbs')
+
+app.use(express.static('public'))
+
 app.use(express.urlencoded({ extended: true }))
+app.use(session({ secret: '124447yd@@$%%#', cookie: { maxAge: 60000 }, saveUninitialized: false, resave: false }))
 
 app.get('/', requiresLogin, (req, res) => {
     const user = req.session["User"]

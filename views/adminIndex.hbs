@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Welcome Admin Page</h1>
+    <ul>
+        <li>Home</li>
+        <li><div class="dropdown">
+  <button class="dropbtn">Manage Staff</button>
+  <div class="dropdown-content">
+    <a href="#">List Staff</a>
+    <a href="#">Add Staff</a>
+  </div>
+</div></li>
+        <li><div class="dropdown">
+  <button class="dropbtn">Manage Trainer</button>
+  <div class="dropdown-content">
+    <a href="#">List Trainer</a>
+    <a href="#">Add Trainer</a>
+  </div>
+</div></li>
+        <li><div class="dropdown">
+  <button class="dropbtn">Manage Trainee</button>
+  <div class="dropdown-content">
+    <a href="#">List Trainee</a>
+    <a href="#">Add Trainee</a>
+  </div>
+</div></li>
+        <li>Logout<p><a href="login.hbs" target="self">logout</a></p></li>
+    </ul>
+    <h2>Profile Admin</h2>
+    <center>  <table border="1">
+   <tr>
+      <th>Name admin</th>
+      <th>User name</th>
+      <th>Address</th>
+      <th>Image</th>
+      <th>Edit</th>
+   </tr>
+        {{#each data}}
+        <tr>
+           <th>{{name}}</th> 
+           <th>{{username}}</th> 
+           <th>{{address}}</th>
+            <th> <img src="https://i2.wp.com/anonyviet.com/wp-content/uploads/2016/12/websitehack.jpg?resize=600%2C338&ssl=1" width="150" height="100"/></th>
+            <th><a href="/delete?id={{_id}}">Delete</a><br><a href="/edit?id={{_id}}">Update</a></th> 
+        {{/each}} 
+    </tr> 
+    </table>
+</div></center>
+</body>
+</html>

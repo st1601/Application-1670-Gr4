@@ -1,9 +1,10 @@
-const {ObjectId,MongoClient} = require('mongodb');
-const url = 'mongodb+srv://binson113:son160901@cluster0.q4jaj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const {ObjectId,MongoClient, Admin} = require('mongodb');
+const url = 'mongodb+srv://binst113:son162401@cluster0.q4jaj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+
 
 async function getDB() {
-    const client = await MongoClient.connect(URL);
-    const dbo = client.db(DATABASE_NAME);
+    const client = await MongoClient.connect(url);
+    const dbo = client.db(admin);
     return dbo;
 }
 
@@ -24,25 +25,4 @@ async function checkUserRole(nameI, passI) {
     }
 }
 
-async function insertProduct(newProduct) {
-    const dbo = await getDB();
-    await dbo.collection("products").insertOne(newProduct);
-}
-
-async function updateProduct(id, nameInput, quantityInput, priceInput) {
-    const filter = { _id: ObjectId(id) };
-    const newValue = { $set: { name: nameInput, quantity: quantityInput, price: priceInput } };
-
-    const dbo = await getDB ();
-    await dbo.collection("products").updateOne(filter, newValue);
-}
-async function getProductById(id) {
-    const dbo = await getDB();
-    const p = await dbo.collection("products").findOne({ _id: ObjectId(id) });
-    return p;
-}
-async function deleteProduct(id) {
-    const dbo = await getDB();
-    await dbo.collection("products").deleteOne({ "_id": ObjectId(id) });
-}
-module.exports = {getDB,insertProduct,updateProduct,getProductById,deleteProduct,insertObject, checkUserRole}
+module.exports = {getDB, insertObject, checkUserRole}
