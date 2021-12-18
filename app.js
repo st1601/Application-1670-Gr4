@@ -8,12 +8,37 @@ const url = 'mongodb://localhost:27017'
 app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
-    res.render('index')
+app.get('/', requiresLogin, (req, res) => {
+    const user = req.session["User"]
+    res.render('index', { userInfo: user })
 })
 
-const TrainerCtl = require('./controller/Trainer')
-app.use('/Trainer', TrainerCtl)
+app.post('/login', async(req, res) => {
+    const name = req.body.txtName
+    const pass = req.body.txtPass
+    const role = await checkUserRole(name, pass)
+    if (role == -1) {
+        res.render('login')
+    } else {
+        req.session["User"] = {
+            name: name,
+            role: role
+        }
+        console.log("Ban dang dang nhap voi quyen la: " + role)
+        res.redirect('/')
+    }
+})
+
+app.get('/login', (req, res) => {
+    res.render('login')
+})
+
+
+const adminController = require('./controller/admin')
+app.use('/admin', adminController)
+
+const trainerController = require('./Trainer')
+app.use('/Trainer',trainerController)
 
 const PORT = process.env.PORT || 5010
 app.listen(PORT)
