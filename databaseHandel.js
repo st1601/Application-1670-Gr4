@@ -1,10 +1,10 @@
 const {ObjectId,MongoClient, Admin} = require('mongodb');
-const url = 'mongodb+srv://binst113:son162401@cluster0.q4jaj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-
+const url = 'mongodb://localhost:27017';
+const DATABASE_NAME = "1670_AP"
 
 async function getDB() {
     const client = await MongoClient.connect(url);
-    const dbo = client.db(admin);
+    const dbo = client.db(DATABASE_NAME);
     return dbo;
 }
 
