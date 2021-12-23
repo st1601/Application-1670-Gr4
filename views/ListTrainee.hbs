@@ -11,7 +11,8 @@
 </head>
 
 <body>
-    <form action="/addTrainee" method="POST" class="add">
+    
+    <form action="/Trainer/ListTrainee" method="POST" class="add">
         ID<input type="text" name="txtID">
         <br>Name <input type="text" name="txtName">
         <br> Gmail <input type="text" name="txtGmail">
@@ -21,10 +22,12 @@
         <br>
     </form>
 
-<form action="/searchTrainee" method="POST">
+<form action="/Trainer/searchTrainee" method="POST">
 Search Trainee <input type="text" name="txtSearchTrainee" id="SearchTrainee">
 <input type="submit" value="Search">
 </form>
+
+{{!-- <h1>Hello World</h1> --}}
 
 <div class="TableTraineeDetail">
     <table class="table table-bordered">
@@ -36,14 +39,14 @@ Search Trainee <input type="text" name="txtSearchTrainee" id="SearchTrainee">
     <th>Birthday</th>
     <th>Delete</th>
 </tr>
-{{#each data}}
+{{#each dataTrainee}}
 <tr>  
     <td>{{ID}} </td>
-    <td>{{Name}} </td>
+    <td>{{Name}} </td> 
     <td>{{Gmail}} </td>
     <td>{{Age}}</td>
     <td>{{Birthday}}</td>
-    <td><a href="/deleteTrainee?id={{_id}}">Delete</a></td>
+    <td><a href="/trainer/deleteTrainee?id={{_id}}">Delete</a></td>
 </tr>
 {{/each}}
     </table>

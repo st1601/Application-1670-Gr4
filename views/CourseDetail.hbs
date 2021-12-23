@@ -13,24 +13,19 @@
 <tr>
     <th>ID</th>
     <th>Name</th>
-    <th>Tutor</th>
+    <th>Trainer</th>
     <th>Schedule</th>
 </tr>
-<tr>
-    <td>1670</td>
-    <td>Application development</td>
-    <td>Do Quoc Binh</td>
-    <td>10/11/2021 - 1/1/2022</td>
+
+{{#each CourseData}}
+<tr>  
+    <td>{{id}} </td>
+    <td>{{name}} </td>
+    <td>{{trainer}} </td>
+    <td>{{schedule}}</td>
 </tr>
+{{/each}}
+
     </table>
 </body>
 </html>
-{{!-- {{#each data}}
-<tr>  
-    <td>{{ID}} </td>
-    <td>{{Name}} </td>
-    <td>{{Gmail}} </td>
-    <td>{{Age}}</td>
-    {{!-- <td>{{<a class="btn btn-primary" href="GradeTrainee.hbs" role="button">Grade</a>}}</td> 
-</tr>
-{{/each}} --}}

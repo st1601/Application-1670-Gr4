@@ -10,22 +10,24 @@
 </head>
 <body>
 
-<header>
-<h1> Trainer DUONG QUANG HIEP </h1>
-</header>
 
 <section class="inputForm">
+  
+    <h1>Add List Course</h1>
+    <form action="/Trainer/addListTotal" method="post"></form>
+    Course ID <input type="text" name="txtCourseId" id="txtCourseId">
+    <br>
+    Grade ID <input type="text" name="txtGradeId" id="txtGradeId">
+    <br>
+    Trainee ID <input type="text" name="txtTraineeId" id="txtTraineeId">
+    <input type="submit" value="Add Course">
+    </form>
 
-
-<form action="/search" method="POST" class="searchCourse">
-        Search <input type="text" name = "txtSearch">
+<form action="/trainer/searchTotal" method="POST" class="searchCourse">
+        Search <input type="text" name = "txtSearchCourse">
         <input type="submit" value="search">
 </form>
-<div class="addCourseButton">
 
-<a class="btn btn-primary" href="/Trainer/addCourseButton" role="button">Add Course</a>
-<a class="btn btn-primary" href="ListTrainee.hbs" role="button">Add Trainee</a>
-</div>
 <h1 id="courseTitle">List Of Course</h1>
 
 
@@ -33,18 +35,18 @@
 
 <table class="table table-bordered">
 <tr>
-    <th>No</th>
     <th>Course</th>
     <th>List of trainee</th>
     <th>List Of Grade</th>
-</tr>
-<tr>
-  <td>1</td>
-  <td><a class="btn btn-primary" href="/Trainer/CourseDetail" role="button">Course1</a></td>
-  <td><a class="btn btn-primary" href="/Trainer/ListTrainee" role="button">ListTrainee1</a></td>
-  <td><a class="btn btn-primary" href="/Trainer/GradeTrainee" role="button">Grade</a></td>
-</tr>
 
+</tr>
+{{#each dataTotal}}
+<tr>
+  <td><a class="btn btn-primary" href="/Trainer/CourseDetail?id={{_id}}" role="button">{{CourseID}}</a></td>
+  <td><a class="btn btn-primary" href="/Trainer/listTrainee?id={{_id}}" role="button">{{TraineeID}}</a></td>
+  <td><a class="btn btn-primary" href="/Trainer/GradeTrainee?id{{_id}}" role="button">{{GradeID}}</a></td>
+</tr>
+{{/each}}
 </table>
 </form>
 </section>
